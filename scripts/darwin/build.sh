@@ -37,4 +37,4 @@ fpm \
 	--osxpkg-identifier-prefix com.logdna \
 	--force \
 		./.build/logdna-agent=/usr/local/bin/logdna-agent \
-		./.build/scripts/com.logdna.logdna-agent.plist=/Library/LaunchDaemons/com.logdna.logdna-agent.plist`
+		./.build/scripts/com.logdna.logdna-agent.plist=/Library/LaunchDaemons/com.logdna.logdna-agent.plist
