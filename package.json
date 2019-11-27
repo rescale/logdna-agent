@@ -4,8 +4,12 @@
   "description": "LogDNA Collector Agent",
   "main": "index.js",
   "scripts": {
+    "build.darwin": "bash ./scripts/darwin/build.sh",
     "build.linux": "bash ./scripts/linux/build.sh",
+    "build.win32": "bash ./scripts/win32/build.sh",
+    "deploy.darwin": "bash ./scripts/darwin/deploy.sh",
     "deploy.linux": "bash ./scripts/linux/deploy.sh",
+    "deploy.win32": "bash ./scripts/win32/deploy.sh",
     "lint": "./node_modules/.bin/grunt eslint",
     "test.linux": "bash ./scripts/linux/test.sh",
     "test.unit": "./node_modules/.bin/grunt mochacli",
@@ -34,9 +38,6 @@
     "macaddress": "^0.2.8",
     "properties": "^1.2.1",
     "request": "^2.71.0"
-  },
-  "optionalDependencies": {
-    "node-windows": "^0.1.11"
   },
   "devDependencies": {
     "grunt": "^1.0.3",
