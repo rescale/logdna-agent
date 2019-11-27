@@ -32,7 +32,7 @@ fpm \
 	--vendor "LogDNA, Inc." \
 	--description "LogDNA Agent for Linux" \
 	--url "http://logdna.com/" \
-	--maintainer "support@logdna.com" \
+	--maintainer "LogDNA, Inc. <support@logdna.com>" \
 	--before-remove ./.build/scripts/before-remove \
 	--after-upgrade ./.build/scripts/after-upgrade \
 	--force --deb-no-default-config-files \
@@ -50,7 +50,7 @@ fpm \
 	--vendor "LogDNA, Inc." \
 	--description "LogDNA Agent for Linux" \
 	--url "http://logdna.com/" \
-	--maintainer "support@logdna.com" \
+	--maintainer "LogDNA, Inc. <support@logdna.com>" \
 	--before-remove ./.build/scripts/before-remove \
 	--after-upgrade ./.build/scripts/after-upgrade \
 	--force \
