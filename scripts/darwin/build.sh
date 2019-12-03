@@ -1,5 +1,5 @@
 #!/bin/bash
-# Assuming it is running on Debian
+# Assuming it is running on Darwin
 
 # Variables
 ARCH=x64
@@ -10,8 +10,10 @@ NODE_VERSION=12.13.0
 OSX=osxpkg
 
 # Step 1: Install Dependencies
-sudo npm install -g nexe
-sudo apt-get install -y ruby ruby-dev rubygems build-essential
+sudo npm cache clean --force
+sudo rm -rf ~/.npm/_cacache
+npm install -g nexe
+brew install gnu-tar
 sudo gem install --no-ri --no-rdoc fpm
 
 # Step 2: Prepare Folders and Files
@@ -21,15 +23,16 @@ cp ./scripts/darwin/files/* .build/scripts/
 # Step 3: Compile and Build Executable
 nexe -i index.js -o .build/logdna-agent -t darwin-${ARCH}-${NODE_VERSION}
 
-# Step 4: OSX Packaging
+# Step 4: Package for OSX
 fpm \
 	--input-type ${INPUT_TYPE} \
 	--output-type ${OSX} \
 	--name ${NAME} \
 	--version ${VERSION} \
+	--package ${NAME}-${VERSION}-unsigned.pkg \
 	--license ${LICENSE} \
 	--vendor "LogDNA, Inc." \
-	--description "LogDNA Agent for Linux" \
+	--description "LogDNA Agent for Darwin" \
 	--url "http://logdna.com/" \
 	--maintainer "LogDNA, Inc. <support@logdna.com>" \
 	--before-remove ./.build/scripts/uninstall-mac-agent \
@@ -38,3 +41,9 @@ fpm \
 	--force \
 		./.build/logdna-agent=/usr/local/bin/logdna-agent \
 		./.build/scripts/com.logdna.logdna-agent.plist=/Library/LaunchDaemons/com.logdna.logdna-agent.plist
+
+# Step 5: Sign OSX Package
+productsign \
+	--sign "Developer ID Installer: Answerbook, Inc. (TT7664HMU3)" \
+	${NAME}-${VERSION}-unsigned.pkg \
+	${NAME}-${VERSION}.pkg
