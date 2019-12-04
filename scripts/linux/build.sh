@@ -11,6 +11,8 @@ NODE_VERSION=12.13.0
 REDHAT=rpm
 
 # Step 1: Install Dependencies
+sudo npm cache clean --force
+sudo rm -rf ~/.npm/_cacache
 sudo npm install -g nexe
 sudo apt-get install -y ruby ruby-dev rubygems build-essential rpm
 sudo gem install --no-ri --no-rdoc fpm

@@ -9,6 +9,7 @@ logdna-agent.exe
 tmp
 **/*.deb
 **/*.rpm
+**/*.p12
 
 # Test directory
 .temp
