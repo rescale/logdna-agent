@@ -43,8 +43,6 @@ fpm \
 		./.build/scripts/com.logdna.logdna-agent.plist=/Library/LaunchDaemons/com.logdna.logdna-agent.plist
 
 # Step 5: Sign OSX Package
-wget https://${GITHUB_TOKEN}@github.com/answerbook/absecret/raw/master/abmacsigningkey.p12 -o key.p12
-security import key.p12 -k ~/Library/Keychains/login.keychain -P ""
 productsign \
 	--sign "Developer ID Installer: Answerbook, Inc. (TT7664HMU3)" \
 	${NAME}-${VERSION}-unsigned.pkg \
