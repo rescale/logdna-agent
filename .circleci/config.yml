@@ -49,6 +49,33 @@ jobs:
           at: /tmp/workspace
       - run: npm run test.version
       - run: npm run deploy.linux
+  build-win32:
+    docker:
+      - image: circleci/node:12.13.0
+    steps:
+      - checkout
+      - run: npm run test.version
+      - run: npm run build.win32
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./logdna-agent.zip
+  choco-win32:
+    docker:
+      - image: linuturk/mono-choco
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: npm run test.version
+      - run: npm run choco.win32
+  deploy-win32:
+    docker:
+      - image: circleci/golang:1.12
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: npm run test.version
+      - run: npm run deploy.win32          
   image-build:
     executor: docker-publisher
     steps:
