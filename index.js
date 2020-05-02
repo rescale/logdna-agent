@@ -60,7 +60,7 @@ program
     })
     .parse(process.argv);
 
-if ((os.platform() === 'win32' && require('is-administrator')()) || process.getuid() <= 0) {
+//if ((os.platform() === 'win32' && require('is-administrator')()) || process.getuid() <= 0) {
     let conf_file = program.config || config.DEFAULT_CONF_FILE;
     debug(`Path to Configuration File: ${conf_file}`);
     async.waterfall([
@@ -291,9 +291,9 @@ if ((os.platform() === 'win32' && require('is-administrator')()) || process.getu
         connectionManager.connectLogServer(config);
         debug('logdna agent successfully started');
     });
-} else {
-    console.log('You must be an Administrator (root, sudo) run this agent! See -h or --help for more info.');
-    process.exit();
-}
+//} else {
+//    console.log('You must be an Administrator (root, sudo) run this agent! See -h or --help for more info.');
+//    process.exit();
+//}
 
 process.on('uncaughtException', (err) => utils.log(`uncaught error: ${(err.stack || '').split('\r\n')}`, 'error'));
